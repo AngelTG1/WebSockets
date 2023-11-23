@@ -1,12 +1,19 @@
 const WebSocket = require('ws');
-const http = require('http');
+const https = require('https');
 const express = require('express');
 const cors = require('cors');
 
 
 const app = express();
 app.use(cors());
-const server = http.createServer(app);
+
+
+const options = {
+    private_key:"",
+    cert: ""
+}
+
+const server = https.createServer(options, app);
 
 const wss = new WebSocket.Server({ server, path: '/sensores' });
 
